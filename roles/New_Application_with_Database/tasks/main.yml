@@ -1,0 +1,12 @@
+---
+- import_tasks: create_database.yml
+  when: action in ["New_Application_with_Database", "Create_Database"]
+
+- import_tasks: create_user.yml
+  when: action in ["New_Application_with_Database", "Create_User"]
+
+- import_tasks: grant_user_permission.yml
+  when: action in ["Grant_Database_Permissions"]
+
+- import_tasks: alter_user_role.yml
+  when: action in ["New_Application_with_Database", "Alter_User_Role"]

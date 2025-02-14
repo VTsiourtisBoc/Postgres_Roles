@@ -1,0 +1,14 @@
+---
+- name: Print message before creating database
+  debug:
+    msg: "Creating a new database on local PostgreSQL server"
+
+- name: Create a new database on local PostgreSQL server
+  community.postgresql.postgresql_db:
+    name: "{{ postgres_new_db_name }}"
+    login_host: "{{ postgres_host }}"
+    login_port: "{{ postgres_port }}"
+    login_user: "{{ postgres_user }}"
+    login_password: "{{ postgres_password }}"
+    state: present
+  tags: create_database

@@ -1,0 +1,21 @@
+- name: Ensure backup directory exists
+  file:
+    path: "{{ backup_dir }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0755'
+  become: yes
+  become_user: root
+  vars:
+    ansible_become_pass: "{{ become_pass }}"
+
+- name: Perform PostgreSQL backup
+  command: >
+    {{ pg_dump_path }} -h {{ postgres_host }} -p {{ postgres_port }} -U {{ postgres_user }} -F c -b -v
+    -f {{ backup_dir }}/{{ ansible_date_time.iso8601_basic }}_pg_backup.tar
+    {{ database_name }}
+  environment:
+    PGPASSWORD: "{{ postgres_password }}"
+  become: yes
+  become_user: postgres

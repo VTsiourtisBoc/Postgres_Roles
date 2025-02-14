@@ -1,0 +1,15 @@
+---
+- name: Grant permissions on a specific table
+  postgresql_privs:
+    db: "{{ postgres_db }}"
+    role: "{{ new_db_user }}"
+    schema: "{{ schema_name }}"  # Add the schema parameter here
+    objs: "{{ table_name }}"
+    privs: "{{ privileges }}"
+    type: table
+    state: present
+    login_host: "{{ postgres_host }}"
+    login_port: "{{ postgres_port }}"
+    login_user: "{{ postgres_user }}"
+    login_password: "{{ postgres_password }}"
+  tags: grant_user_permission

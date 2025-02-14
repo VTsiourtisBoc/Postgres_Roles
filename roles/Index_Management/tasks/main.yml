@@ -1,0 +1,9 @@
+---
+- import_tasks: create_index.yml
+  when: action == "Create_Index"
+
+- import_tasks: remove_index.yml
+  when: action == "Remove_Index"
+
+- import_tasks: rebuild_index.yml
+  when: action == "Rebuild_Index"

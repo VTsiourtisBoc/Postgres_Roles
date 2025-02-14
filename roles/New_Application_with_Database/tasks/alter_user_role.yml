@@ -1,0 +1,9 @@
+- name: Alter user role
+  community.postgresql.postgresql_query:
+    db: "{{ postgres_db }}"
+    query: "GRANT {{ role_to_grant }} TO {{ user_to_inherit }};"
+    login_host: "{{ postgres_host }}"
+    login_port: "{{ postgres_port }}"
+    login_user: "{{ postgres_user }}"
+    login_password: "{{ postgres_password }}"
+  tags: alter_role

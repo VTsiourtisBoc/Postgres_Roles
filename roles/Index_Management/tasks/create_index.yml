@@ -1,0 +1,14 @@
+- name: Create btree index concurrently or not with storage parameter
+  community.postgresql.postgresql_idx:
+    db: "{{ postgres_db }}"
+    schema: "{{ schema_name }}"  # Use the schema parameter here
+    table: "{{ table_name }}"
+    columns: "{{ table_columns }}"
+    idxname: "{{ idxname }}"
+    storage_params: "{{ storage_params }}"
+    concurrent: "{{ concurrent }}"  # Corrected parameter name
+    login_host: "{{ postgres_host }}"
+    login_port: "{{ postgres_port }}"
+    login_user: "{{ postgres_user }}"
+    login_password: "{{ postgres_password }}"
+  tags: create_index

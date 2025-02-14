@@ -1,0 +1,10 @@
+- name: Create PostgreSQL user
+  community.postgresql.postgresql_user:
+    name: "{{ new_db_user }}"
+    password: "{{ new_password }}"
+    login_host: "{{ postgres_host }}"
+    login_port: "{{ postgres_port }}"
+    login_user: "{{ postgres_user }}"
+    login_password: "{{ postgres_password }}"
+    state: present
+  tags: create_user
